@@ -1,0 +1,17 @@
+training:
+  batch_size: 16
+  num_workers: 0 # PyTorch will take care of it
+  epoch: 4
+  conf_threshold: 0.8
+  nms_iou_threshold: 0.6
+  map_iou_threshold: 0.5
+  save_model: True
+  checkpoint_file: "small_training_2.pth.tar"
+  load_model: False
+  training_set_size: 100
+  validation_set_size: 20
+  test_set_size: 50
+  learning_rate: 1e-5
+  weight_decay: 1e-4
+  early_stopping: True
+  early_stopping_bad_epochs: 5

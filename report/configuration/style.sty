@@ -1,0 +1,81 @@
+\ProvidesPackage{configuration/style}
+\usepackage{hyperref}
+\usepackage[left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{fancyvrb}
+\usepackage{colorprofiles}
+\usepackage{subfiles}
+\usepackage{flafter}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{courier}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{MnSymbol}
+\usepackage{bbm}
+\usepackage{relsize}
+\usepackage[title]{appendix}
+
+\usepackage[tikz]{bclogo}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+    pdftitle={YOLO v3 re-implementation for the project of the course ``Machine Learning"},
+    pdfauthor={Marco Ferrati, Michele Perlino, Tommaso Azzalin},
+}
+
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt} 
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{YOLO v3 re-implementation for the project of the course ``Machine Learning"}
+\fancyfoot[L]{Marco Ferrati, Michele Perlino, Tommaso Azzalin}
+\fancyfoot[R]{Page \thepage\ of \pageref*{LastPage}}
+\setlength{\headheight}{14.5pt}
+
+\setcounter{tocdepth}{4}
+
+\newcommand{\e}[1]{#1 \euro{}}
+
+\graphicspath{{assets/images/}}
+
+\addto\captionsitalian{\renewcommand{\abstractname}{Abstract}}
+
+\newcommand\ytl[2]{
+    \parbox[b]{9em}{\hfill{\color{cyan}\bfseries\sffamily #1}~$\cdots\cdots$~}\makebox[0pt][c]{$\bullet$}\vrule\quad \parbox[c]{10cm}{\vspace{14pt}\color{red!40!black!80}\raggedright\sffamily #2.\\[17pt]}\\[-3pt]}
+
+\DeclareGraphicsExtensions{.png,.jpg}
+
+
+\lstset{
+    tabsize = 4, %% set tab space width
+    showstringspaces = false, %% prevent space marking in strings, string is defined as the text that is generally printed directly to the console
+    commentstyle = \color{green!50!black}, %% set comment color
+    keywordstyle = \color{blue}, %% set keyword color
+    stringstyle = \color{red}, %% set string color
+    basicstyle = \small \ttfamily , %% set listing font and size
+    breaklines = true, %% enable line breaking
+    numberstyle = \tiny,
+}
+
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother

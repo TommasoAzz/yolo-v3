@@ -1,0 +1,123 @@
+architecture:
+  width: 128
+  height: 128
+  color_channels: 3
+  num_classes: 100 # the number of classes in ImageNet
+  blocks:
+    - type: convolutional
+      in_channels: 1
+      out_channels: 32
+      kernel_size: 3
+      stride: 1
+      padding: 1
+    - type: convolutional
+      in_channels: 32 # = out_channels of previous layer
+      out_channels: 64
+      kernel_size: 3
+      stride: 2
+      padding: 1
+    - type: residual
+      in_channels: 64
+      repetitions: 1
+    - type: convolutional
+      in_channels: 64
+      out_channels: 128
+      kernel_size: 3
+      stride: 2
+      padding: 1
+    - type: residual
+      in_channels: 128
+      repetitions: 2
+    - type: convolutional
+      in_channels: 128
+      out_channels: 256
+      kernel_size: 3
+      stride: 2
+      padding: 1
+    - type: residual
+      repetitions: 4 # Halved
+      in_channels: 256
+      route_connection: True
+    - type: convolutional
+      in_channels: 256
+      out_channels: 512
+      kernel_size: 3
+      stride: 2
+      padding: 1
+    - type: residual
+      in_channels: 512
+      repetitions: 4 # Halved
+      route_connection: True
+    - type: convolutional
+      in_channels: 512
+      out_channels: 1024
+      kernel_size: 3
+      stride: 2
+      padding: 1
+    - type: residual
+      in_channels: 1024
+      repetitions: 2 # Halved
+    - type: convolutional
+      in_channels: 1024
+      out_channels: 512
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    - type: convolutional
+      in_channels: 512
+      out_channels: 1024
+      kernel_size: 3
+      stride: 1
+      padding: 1
+    - type: detection
+      in_channels: 1024
+      out_channels: 512
+      num_anchors: 3
+    - type: convolutional
+      in_channels: 512
+      out_channels: 256
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    - type: upsample
+      scale_factor: 2
+    - type: convolutional
+      in_channels: 768 # 512 + 256
+      out_channels: 256
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    - type: convolutional
+      in_channels: 256
+      out_channels: 512
+      kernel_size: 3
+      stride: 1
+      padding: 1
+    - type: detection
+      in_channels: 512
+      out_channels: 256
+      num_anchors: 3
+    - type: convolutional
+      in_channels: 256
+      out_channels: 128
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    - type: upsample
+      scale_factor: 2
+    - type: convolutional
+      in_channels: 384 # 256 + 128
+      out_channels: 128
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    - type: convolutional
+      in_channels: 128
+      out_channels: 256
+      kernel_size: 3
+      stride: 1
+      padding: 1
+    - type: detection
+      in_channels: 256
+      out_channels: 128
+      num_anchors: 3
